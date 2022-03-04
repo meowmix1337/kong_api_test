@@ -21,8 +21,8 @@
 - Going to be quiet honest here...I've never used gorm and its auto migrations...so this was just kind of hacked together. Typically the DB tables would NOT be plural but the gorm creates it with s. Probably some set up that I need to configure but it doesn't break anything. I wanted to try out gorm so I said why the hell not. Lets learn something new. Also same with mux. My current role doesn't use that so again...lets learn something new.
 
 # To run 
-`docker-compose up --build`
-`http://localhost:8080`
+- `docker-compose up --build`
+- `http://localhost:8080` - see below for v1 endpoints
 
 # API Endpoints
 ## Services
@@ -88,6 +88,8 @@ Payload:
 }
 ```
 `DELETE` `/v1/services/:id` - marks a service as deleted. Does NOT delete associated versions. Returns OK
+
+## Versions
 `POST` `/v1/versions` - creates a new version with an associated service
 Payload:
 ```
