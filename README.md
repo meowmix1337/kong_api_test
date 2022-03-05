@@ -100,12 +100,12 @@ Payload:
 ```
 
 # Stack
-- Backend - Go
+- Backend - Go - Golang has very fast compliation time and is generally faster than other backend languages like python. Developers of Go promises backwards compatibility for all releases (until they go to 2.x). With that, I can keep Go up-to-date with little to no issues.
 - DB - MySQL
-    - Chose MySQL since this is what I'm most familiar with. Chose a relational DB since the DB model doesn't seem to need to change frequently so no need for a NoSQL.
+    - I Chose MySQL since this is what I'm most familiar with. Also since the DB model doesn't seem to need to change frequently so no need for a NoSQL. MySQL allows for atomic property where all actions in a transaction must be successful otherwise the changes rollback which in this small exercise would be good to have. NoSQL typically does handle load much easier since we can scale horizontally by adding more nodes to cope with the traffic. With MySQL, if we are handling a lot of load, I would most likely add some sort of queuing system to allow messages to be processed in batches instead of all at once. NSQ would be a good way forward as it would cost 0 since it is installed on the application node. If I went to another messaging system, I would probably use AWS SQS. Downside of doing a queue would be the data would not be processed instantly and some users may have to wait.
 
 # Assumptions
-- Assuming users will input the correct payload. There is some validation for inputs but it isn't very robust.
+- I am assuming users will input the correct payload. There is some validation for inputs but it isn't very robust.
 - When associating a new version to a service, there is no validation for service_id, so assumption is that the user will always input an existing service_id...not realistic but ya know.
 
 # Design
@@ -124,4 +124,5 @@ Payload:
 - Add a shit ton of validations
 - Add transactions to make sure if anything fails during creation of a service with an initial version that we roll things back
 - Delete associated versions when deleting services
+- Add better pagination details when data is returned. i.e. next page, last page, # of results on the page, etc
 
